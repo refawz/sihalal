@@ -47,3 +47,22 @@
 .nav-head {
     letter-spacing: 3px;
 }
+
+.menu-item {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.login-modal {
+    max-width: 500px;
+}
+
+.login-modal .btn-close {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    font-size: 18px;
+}
