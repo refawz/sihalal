@@ -34,8 +34,6 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#portfolio">Portfolio</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#about">About</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#contact">Contact</a></li>
@@ -72,37 +70,54 @@
             <div class="row justify-content-center">
                 <!-- Portfolio Item 1-->
                 <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                    <div onclick="login()" class="portfolio-item mx-auto" data-bs-toggle="modal"
+                        data-bs-target="#portfolioModal1">
                         <div
                             class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fa-regular fa-user fa-3x"></i></div>
                         </div>
-                        <div class="bg-info align-items-center text-center text-white menu-item fw-bold fs-2">Sign In
+                        <div class="bg-1 align-items-center text-center text-white menu-item fw-bold fs-2">Login
                         </div>
                     </div>
                 </div>
                 <!-- Portfolio Item 1-->
                 <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                    <div onclick="logout()" class="portfolio-item mx-auto" data-bs-toggle="modal"
+                        data-bs-target="#portfolioModal1">
                         <div
                             class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fa-regular fa-user fa-3x"></i></div>
                         </div>
-                        <div class="bg-info menu-item text-white  fw-bold fs-2">Sign In
+                        <div class="bg-2 menu-item text-white  fw-bold fs-2">Logout
                         </div>
                     </div>
                 </div>
                 <!-- Portfolio Item 1-->
                 <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModal1">
+                    <div onclick="dataList()" class="portfolio-item mx-auto" data-bs-toggle="modal"
+                        data-bs-target="#portfolioModal1">
                         <div
                             class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i
                                     class="fa-regular fa-user fa-3x"></i></div>
                         </div>
-                        <div class="bg-info align-items-center text-center text-white menu-item fw-bold fs-2">Sign In
+                        <div class="bg-3 align-items-center text-center text-white menu-item fw-bold fs-2">Data
+                            List
+                        </div>
+                    </div>
+                </div>
+                <!-- Portfolio Item 1-->
+                <div class="col-md-6 col-lg-4 mb-5">
+                    <div onclick="dataMohon()" class="portfolio-item mx-auto" data-bs-toggle="modal"
+                        data-bs-target="#portfolioModal1">
+                        <div
+                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
+                            <div class="portfolio-item-caption-content text-center text-white"><i
+                                    class="fa-regular fa-user fa-3x"></i></div>
+                        </div>
+                        <div class="bg-info align-items-center text-center text-white menu-item fw-bold fs-2">Data Mohon
                         </div>
                     </div>
                 </div>

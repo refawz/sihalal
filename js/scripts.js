@@ -7,6 +7,8 @@
 // Scripts
 // 
 
+var token = '';
+
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
@@ -59,7 +61,6 @@ window.addEventListener('DOMContentLoaded', event => {
     //         console.log(res)
     //     }
     // })
-    login()
 });
 
 function getExternalData(endpoint, args) {
@@ -71,7 +72,7 @@ function getExternalData(endpoint, args) {
         if (xhr.readyState === 4 && xhr.status === 200) {
             response = JSON.parse(xhr.responseText);
             // console.log('Response: ', response);
-            
+
             args.onSuccess(response);
         }
     });
@@ -84,29 +85,75 @@ function getExternalData(endpoint, args) {
 
 }
 
+// Example GET method implementation:
+async function getData(url = '') {
+    // Default options are marked with *
+    const response = await fetch(url, {
+        method: 'GET', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        // cookie: '__bpjph_ct=' + token,
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Basic ' + token,
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        // body: JSON.stringify(data) // body data type must match "Content-Type" header
+    });
+    return response.json(); // parses JSON response into native JavaScript objects
+}
 
 // Example POST method implementation:
 async function postData(url = '', data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
-      method: 'POST', // *GET, POST, PUT, DELETE, etc.
-      mode: 'cors', // no-cors, *cors, same-origin
-      cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
-      credentials: 'same-origin', // include, *same-origin, omit
-      headers: {
-        'Content-Type': 'application/json'
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      redirect: 'follow', // manual, *follow, error
-      referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-      body: JSON.stringify(data) // body data type must match "Content-Type" header
+        method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
     return response.json(); // parses JSON response into native JavaScript objects
-  }
+}
 
-  function login() {
+function login() {
     postData('http://103.7.14.55/auth/signin', { 'userid': 'lphwalisongo@walisongo.ac.id', 'password': '12345678' })
-    .then((data) => {
-        console.log(data); // JSON data parsed by `data.json()` call
-    });
-  }
+        .then((data) => {
+            console.log(data); // JSON data parsed by `data.json()` call
+            token = data.payload.token;
+        });
+}
+
+function logout() {
+    postData('http://103.7.14.55/auth/logout', {})
+        .then((data) => {
+            console.log(data);
+        });
+}
+
+function dataList() {
+    stat = '10010';
+    idLph = '3881E330-F978-4806-8325-CF5DF175C9EC';
+    url = 'http://103.7.14.55/api/v1/data_list/' + stat + '/' + idLph;
+    response = getData(url);
+
+    console.log(response);
+}
+
+function dataMohon() {
+    regId = '79629';
+    url = 'http://103.7.14.55/api/v1/reg/' + regId;
+    response = getData(url);
+
+    console.log(response);
+}
+
