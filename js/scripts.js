@@ -338,3 +338,14 @@ function auditResult() {
             console.log(data); // JSON data parsed by `data.json()` call
         });
 }
+
+//menampilkan data-data referensi/master
+function ref() {
+    var keywords = 'STOFF';
+    var orderDir = 'asc';
+    var limit = 40;
+    var url = 'http://103.7.14.55/api/v1/ref?keywords=' + keywords + '&order_dir=' + orderDir + '&limit=' + limit;
+    var response = getData(url);
+
+    console.log(response);
+}
