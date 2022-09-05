@@ -37,18 +37,18 @@
                             href="#otentifikasi">Otentifikasi </a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#dataPermohonan">Data Permohonan</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                    <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#biaya">Biaya</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#invoice">Invoice</a></li>
+                            href="#invoice">Invoice</a></li> -->
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#jadwalAudit">Jadwal Audit</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="#jadwalAudit">Audit</a></li>
+                    <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#auditor">Auditor</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#hasilAudit">Hasil Audit</a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded" href="#dataRef">Data
-                            Referensi</a></li>
+                            href="#hasilAudit">Hasil Audit</a></li> -->
+                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                            href="#dataRef">Ref</a></li>
                 </ul>
             </div>
         </div>
@@ -83,8 +83,7 @@
             <div class="row justify-content-center">
                 <!-- Portfolio Item 1-->
                 <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="login()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
+                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#loginModal">
                         <div
                             class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i
@@ -120,7 +119,7 @@
                 <!-- Portfolio Item 1-->
                 <div class="col-md-6 col-lg-4 mb-5">
                     <div onclick="dataList()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
+                        data-bs-target="#dataListModal">
                         <div
                             class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
                             <div class="portfolio-item-caption-content text-center text-white"><i
@@ -403,7 +402,7 @@
     </div>
     <!-- Portfolio Modals-->
     <!-- Portfolio Modal 1-->
-    <div class="portfolio-modal modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1"
+    <div class="portfolio-modal modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal"
         aria-hidden="true">
         <div class="modal-dialog login-modal">
             <div class="modal-content">
@@ -411,21 +410,60 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-9">
-                                <button class="btn-close" type="button" data-bs-dismiss="modal"
+                                <button id="btnCloseLogin" class="btn-close" type="button" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                                 <div class="fs-2 mb-2">Login</div>
                                 <div class="border border-1 mb-3"></div>
-                                <form>
+                                <div id="loginAlert" role="alert"></div>
+                                <form id="loginForm">
                                     <div class="mb-3">
-                                        <label for="exampleInputEmail1" class="form-label">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1"
+                                        <label for="inputEmail" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="inputEmail"
                                             aria-describedby="emailHelp">
                                     </div>
                                     <div class="mb-4">
-                                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1">
+                                        <label for="inputPassword" class="form-label">Password</label>
+                                        <input type="password" class="form-control" id="inputPassword">
                                     </div>
-                                    <button type="submit" class="btn btn-primary w-100">Submit</button>
+                                    <button id="btnLogin" type="submit" class="btn btn-primary w-100">Login</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--Data List Modal-->
+    <div class="portfolio-modal modal fade" id="dataListModal" tabindex="-1" aria-labelledby="dataListModal"
+        aria-hidden="true">
+        <div class="modal-dialog login-modal">
+            <div class="modal-content">
+                <div class="modal-body pb-5 pt-4">
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-9">
+                                <button id="btnCloseDataList" class="btn-close" type="button" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                                <div class="fs-2 mb-2">Data List</div>
+                                <form id="dataList">
+                                    <div class="mb-3">
+                                        <label for="statusDataList" class="form-label">Status</label>
+                                        <select class="form-select form-select" aria-label=".form-select example"
+                                            id="statusDataList">
+                                            <option selected>Status Permohonan</option>
+                                            <option value="10010">Dikirim ke LPH</option>
+                                            <option value="10020">Penetapan Biaya</option>
+                                            <option value="10025">Pembayaran</option>
+                                            <option value="10030">Proses di LPH</option>
+                                            <option value="10040">Selesai Proses di LPH</option>
+                                            <option value="10050">Diterima Komisi Fatwa</option>
+                                            <option value="10060">Proses Sidang Fatwa</option>
+                                            <option value="10070">Selesai Sidang Fatwa</option>
+                                            <option value="10080">Selesai</option>
+                                        </select>
+                                    </div>
+                                    <button id="btnDataList" type="submit" class="btn btn-primary w-100">Submit</button>
                                 </form>
                             </div>
                         </div>

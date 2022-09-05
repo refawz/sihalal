@@ -165,13 +165,35 @@ async function editData(url = '', data = {}) {
     return response.json(); // parses JSON response into native JavaScript objects
 }
 
-function login() {
-    postData('http://103.7.14.55/auth/signin', { 'userid': 'lphwalisongo@walisongo.ac.id', 'password': '12345678' })
+
+//Login
+document.getElementById("btnLogin").addEventListener("click", function (event) {
+    event.preventDefault()
+    var email = document.getElementById('inputEmail').value;
+    var password = document.getElementById('inputPassword').value;
+    var element = document.getElementById('loginAlert');
+    // element.style.display = "none";
+    postData('http://103.7.14.55/auth/signin', { 'userid': email, 'password': password })
         .then((data) => {
             console.log(data); // JSON data parsed by `data.json()` call
+            element.classList.add("alert");
+            if (data.status == 'success') {
+                element.classList.add("alert-primary");
+                element.classList.remove("alert-danger");
+                document.getElementById("loginForm").reset();
+            } else {
+                element.classList.add("alert-danger");
+                element.classList.remove("alert-primary");
+                document.getElementById("inputPassword").value = '';
+            }
+            element.innerHTML = data.message;
         });
-}
+});
+// document.getElementById("btnCloseLogin").addEventListener("click", function (event) {
+//     document.getElementById('loginAlert').style.display = "block";
+// });
 
+//Logout
 function logout() {
     postData('http://103.7.14.55/auth/logout', {})
         .then((data) => {
@@ -179,15 +201,17 @@ function logout() {
         });
 }
 
+//Data List
 //data permohonan yang masuk ke lph berdasarkan status
-function dataList() {
-    var stat = '10030'; //10010 = ajuan/dikirim ke lph, 10025=biaya/pembayaran, 10030=periksa/proses di LPH
+document.getElementById("btnDataList").addEventListener("click", function (event) {
+    event.preventDefault()
+    var stat = document.getElementById("statusDataList").value;
     var idLph = '3B81E330-F97B-48D6-B325-0F5DF175C9EC';
     var url = 'http://103.7.14.55/api/v1/data_list/' + stat + '/' + idLph;
     var response = getData(url);
 
     console.log(response);
-}
+});
 
 //detail data permohonan
 function dataMohon() {
