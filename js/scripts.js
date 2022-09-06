@@ -88,6 +88,8 @@ function getExternalData(endpoint, args) {
 // Example GET method implementation:
 async function getData(url = '') {
     // Default options are marked with *
+
+    let resGet = '';
     const response = await fetch(url, {
         method: 'GET', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
@@ -103,6 +105,18 @@ async function getData(url = '') {
         referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         // body: JSON.stringify(data) // body data type must match "Content-Type" header
     });
+    // .then(res => {
+    //     return res.json();
+    // })
+    // .then(data => {
+    //     console.log(data);
+    //     return data;
+    // });
+    // .then(res => res.json())
+    // .then(res => {
+    //     const data = res.Search;
+    //     data.forEach(d => resGet += d);
+    // });
     return response.json(); // parses JSON response into native JavaScript objects
 }
 
@@ -168,7 +182,11 @@ async function editData(url = '', data = {}) {
 
 //Login
 document.getElementById("btnLogin").addEventListener("click", function (event) {
-    event.preventDefault()
+    event.preventDefault();
+    login();
+});
+
+function login() {
     var email = document.getElementById('inputEmail').value;
     var password = document.getElementById('inputPassword').value;
     var element = document.getElementById('loginAlert');
@@ -188,7 +206,7 @@ document.getElementById("btnLogin").addEventListener("click", function (event) {
             }
             element.innerHTML = data.message;
         });
-});
+}
 // document.getElementById("btnCloseLogin").addEventListener("click", function (event) {
 //     document.getElementById('loginAlert').style.display = "block";
 // });
@@ -204,14 +222,20 @@ function logout() {
 //Data List
 //data permohonan yang masuk ke lph berdasarkan status
 document.getElementById("btnDataList").addEventListener("click", function (event) {
-    event.preventDefault()
+    event.preventDefault();
+    dataList();
+});
+
+function dataList() {
     var stat = document.getElementById("statusDataList").value;
     var idLph = '3B81E330-F97B-48D6-B325-0F5DF175C9EC';
     var url = 'http://103.7.14.55/api/v1/data_list/' + stat + '/' + idLph;
-    var response = getData(url);
+    var response = getData(url).then(data => { console.log(data) });
+
+    // dataListRes = response.payload;
 
     console.log(response);
-});
+}
 
 //detail data permohonan
 function dataMohon() {
