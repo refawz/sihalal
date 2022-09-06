@@ -230,7 +230,11 @@ function dataList() {
     var stat = document.getElementById("statusDataList").value;
     var idLph = '3B81E330-F97B-48D6-B325-0F5DF175C9EC';
     var url = 'http://103.7.14.55/api/v1/data_list/' + stat + '/' + idLph;
-    var response = getData(url).then(data => { console.log(data) });
+    var response = getData(url)
+        .then(data => {
+            console.log(data);
+            return data;
+        });
 
     // dataListRes = response.payload;
 
