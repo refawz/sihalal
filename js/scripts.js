@@ -232,8 +232,14 @@ function dataList() {
     var url = 'http://103.7.14.55/api/v1/data_list/' + stat + '/' + idLph;
     var response = getData(url)
         .then(data => {
-            console.log(data);
-            return data;
+            console.log(data.payload);
+            return data.payload;
+        }).then(data => {
+            let html = '';
+            data.forEach(function (d) {
+                html += `<option value="${d.id_reg}">${d.nama_pu}</option> `;
+            });
+            document.getElementById('selectIdRegUpdateStatus').innerHTML = html;
         });
 
     // dataListRes = response.payload;
