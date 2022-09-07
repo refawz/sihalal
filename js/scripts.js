@@ -486,24 +486,92 @@ function generateTable(elTargetClass, dataArr, callback) {
 function lihatDetailData(data) {
     $("#dataDetailModal").modal("show");
     console.log(data);
+    document.querySelector('.dataDetailModalTitle').innerHTML = data.nama_pu;
+    let showData = [
+        'id_reg',
+        'no_daftar',
+        'tgl_daftar',
+        'nama_pu',
+        'alamat_pu',
+        'kota_pu',
+        'prov_pu',
+        'jenis_usaha',
+        'skala_usaha',
+        'jenis_produk',
+        'merk_dagang',
+        'area_pemasaran',
+        'nama_pj',
+        'no_kontak_pj',
+        'email_pj',
+        'tgl_penerimaan_dok',
+        'diterima_oleh',
+        'taken_by',
+        'no_mohon',
+        'tgl_mohon',
+        'file_ttd',
+        'id_pu',
+        'nama_pu_alt',
+    ];
+    let factoriesData = [
+        'id_pabrik',
+        'nama',
+        'alamat',
+        'provinsi',
+        'kode_pos'
+    ];
+    let productsData = [
+        'id_reg_prod',
+        'reg_prod_name',
+        'foto_produk'
+    ];
+    let penyeliaData = [
+        'penyelia_id',
+        'no_sertifikat',
+        'tgl_sertifikat',
+        'no_sk',
+        'tgl_sk',
+        'no_kontak'
+    ];
+    let documentsData = [
+        'dok_id',
+        'file_dok',
+        'tipe_dok',
+        'ket_lainnya',
+        'ck_list'
+    ];
     dataMohon(data.id_reg)
         .then(detail => {
             console.log(detail.payload);
             let det = detail.payload;
             for (const property in det) {
-                console.log(`${property}: ${det[property]}`);
+                // console.log(`${property}: ${det[property]}`);
                 if (Array.isArray(det[property])) {
+                    document.querySelector('.dataDetailContext').innerHTML += `<b>${property}</b><br>`;
                     det[property].forEach(function (prop) {
                         for (const p in prop) {
-                            console.log(`${p}: ${prop[p]}`);
+                            if (factoriesData.includes(p) || productsData.includes(p) || penyeliaData.includes(p) || documentsData.includes(p)) {
+                                document.querySelector('.dataDetailContext').innerHTML += `${p}: ${prop[p]}<br>`;
+                            }
+                            // console.log(`${p}: ${prop[p]}`);
                         }
+                        document.querySelector('.dataDetailContext').innerHTML += `<br>`;
                     });
                 }
-                else if (typeof property == 'object') {
-                    for (const p in property) {
-                        console.log(`${p}: ${property[p]}`);
+                else if (typeof property != 'object') {
+                    // for (const p in property) {
+                    if (showData.includes(property)) {
+                        document.querySelector('.dataDetailContext').innerHTML += `${property}: ${det[property]}<br>`;
                     }
+                    // }
                 }
+                // else {
+                //     document.querySelector('.dataDetailContext').innerHTML += `${property}: ${det[property]}<br>`;
+                // }
             }
-        })
+        });
 }
+
+$("#dataDetailModal").on('hide.bs.modal', function () {
+    document.querySelector('.dataDetailContext').innerHTML = '';
+    document.querySelector('.dataDetailModalTitle').innerHTML = '';
+});
