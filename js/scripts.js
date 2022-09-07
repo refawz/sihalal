@@ -238,7 +238,6 @@ function dataList() {
   var url = "http://103.7.14.55/api/v1/data_list/" + stat + "/" + idLph;
   getData(url)
     .then((data) => {
-      console.log(data.payload);
       return data.payload;
     })
     .then((data) => {
@@ -252,7 +251,7 @@ function dataMohon(regId) {
   var url = "http://103.7.14.55/api/v1/reg/" + regId;
   var response = getData(url);
 
-  console.log(response);
+  return response;
 }
 
 function updateStatus() {
@@ -487,6 +486,13 @@ function generateTable(elTargetClass, dataArr, callback) {
 
 function lihatDetailData(data) {
   $("#dataDetailModal").modal("show");
-  //   console.log(data);
-  dataMohon(data.id_reg);
+  console.log(data.id_reg);
+
+  dataMohon(data.id_reg)
+    .then((data) => {
+      return data.payload;
+    })
+    .then((data) => {
+      console.log(data);
+    });
 }
