@@ -18,6 +18,9 @@
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/custom.css" rel="stylesheet" />
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" -->
+    <!-- integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body id="page-top">
@@ -33,22 +36,25 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#otentifikasi">Otentifikasi </a></li>
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                    <li class="nav-item mx-0 mx-lg-1 nav-section d-none"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#dataPermohonan">Data Permohonan</a></li>
                     <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#biaya">Biaya</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#invoice">Invoice</a></li> -->
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                    <li class="nav-item mx-0 mx-lg-1 nav-section d-none"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#jadwalAudit">Audit</a></li>
                     <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#auditor">Auditor</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#hasilAudit">Hasil Audit</a></li> -->
-                    <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+                    <li class="nav-item mx-0 mx-lg-1 nav-section d-none"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#dataRef">Ref</a></li>
+                    <li class="nav-item" data-id="login-btn"><a class="nav-link py-2 px-0 px-lg-3 rounded login-btn"
+                            href="#dataRef" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
+                    <li class="nav-item d-none" data-id="logout-btn"><a
+                            class="nav-link py-2 px-0 px-lg-3 rounded login-btn">Logout</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -62,344 +68,50 @@
                 </div>
                 <div class="masthead__heading-wrap">
                     <h1 class="masthead__heading">Sistem Informasi Halal</h1>
-                    <p class="masthead__subheading masthead-subheading font-weight-light mb-0">Balai Besar Tekstil</p>
+                    <p class="masthead__subheading masthead-subheading font-weight-light mb-0">Balai Besar Standardisasi
+                        dan Pelayanan Jasa Tekstil</p>
                 </div>
             </div>
         </div>
     </header>
     <!-- Portfolio Section-->
-    <section class="page-section portfolio" id="menuAPI">
+    <section class="page-section portfolio d-none" id="menuAPI">
         <div class="container">
-            <!-- Portfolio Section Heading-->
-            <h4 id="otentifikasi" class="page-section-heading text-center text-uppercase text-secondary mb-0">
-                Otentifikasi</h4>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-divide"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <!-- Portfolio Grid Items-->
-            <div class="row justify-content-center">
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#loginModal">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-arrow-right-to-bracket fa-3x"></i></div>
-                        </div>
-                        <div class="bg-1 align-items-center text-center text-white menu-item fw-bold fs-2">Login
-                        </div>
-                    </div>
+
+            <p><em>Silakan pilih Status Permohonan</em></p>
+            <div class="row align-items-end">
+                <div class="col-md-9">
+                    <!-- <label for="statusDataList" class="form-label">Status</label> -->
+                    <select class="form-select form-select" aria-label=".form-select example" id="statusDataList">
+                        <option selected disabled>Pilih Status Permohonan</option>
+                        <option value="10010">Dikirim ke LPH</option>
+                        <option value="10020">Penetapan Biaya</option>
+                        <option value="10025">Pembayaran</option>
+                        <option value="10030">Proses di LPH</option>
+                        <option value="10040">Selesai Proses di LPH</option>
+                        <option value="10050">Diterima Komisi Fatwa</option>
+                        <option value="10060">Proses Sidang Fatwa</option>
+                        <option value="10070">Selesai Sidang Fatwa</option>
+                        <option value="10080">Selesai</option>
+                    </select>
                 </div>
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="logout()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-arrow-right-from-bracket fa-3x"></i></div>
-                        </div>
-                        <div class="bg-2 menu-item text-white  fw-bold fs-2">Logout
-                        </div>
-                    </div>
+                <div class="col-md-3">
+                    <button id="btnDataList" type="submit" class="btn btn-primary w-100">Ambil Data</button>
                 </div>
             </div>
-            <h4 id="dataPermohonan" class="page-section-heading text-center text-uppercase text-secondary mb-0">Data
-                Permohonan</h4>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-divide"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <div class="row justify-content-center">
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#dataListModal">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-database fa-3x"></i></div>
-                        </div>
-                        <div class="bg-3 align-items-center text-center text-white menu-item fw-bold fs-2">Data
-                            List
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#updateStatusModal">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-arrow-up-from-bracket fa-3x"></i></div>
-                        </div>
-                        <div class="bg-4 align-items-center text-center text-white menu-item fw-bold fs-2">Update
-                            Status
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="dataMohon()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-regular fa-user fa-3x"></i></div>
-                        </div>
-                        <div class="bg-5 align-items-center text-center text-white menu-item fw-bold fs-2">Data Mohon
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h4 id="biaya" class="page-section-heading text-center text-uppercase text-secondary mb-0">Biaya</h4>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-divide"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <div class="row justify-content-center">
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="biayaList()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-wallet fa-3x"></i></div>
-                        </div>
-                        <div class="bg-6 align-items-center text-center text-white menu-item fw-bold fs-2">Biaya List
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="biayaAdd()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-receipt fa-3x"></i></div>
-                        </div>
-                        <div class="bg-1 align-items-center text-center text-white menu-item fw-bold fs-2">Biaya Add
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h4 id="invoice" class="page-section-heading text-center text-uppercase text-secondary mb-0">Invoice</h4>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-divide"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <div class="row justify-content-center">
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="konfirmasiList()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-file-invoice-dollar fa-3x"></i></div>
-                        </div>
-                        <div class="bg-2 align-items-center text-center text-white menu-item fw-bold fs-2">Konfirmasi
-                            List
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h4 id="jadwalAudit" class="page-section-heading text-center text-uppercase text-secondary mb-0">Jadwal
-                Audit</h4>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-divide"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <div class="row justify-content-center">
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="jadwalAuditList()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-calendar-days fa-3x"></i></div>
-                        </div>
-                        <div class="bg-3 align-items-center text-center text-white menu-item fw-bold fs-2">Jadwal Audit
-                            List
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="jadwalAuditAdd()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-calendar-plus fa-3x"></i></div>
-                        </div>
-                        <div class="bg-4 align-items-center text-center text-white menu-item fw-bold fs-2">Jadwal Audit
-                            Add
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="jadwalAuditUpdate()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-calendar fa-3x"></i></div>
-                        </div>
-                        <div class="bg-5 align-items-center text-center text-white menu-item fw-bold fs-2">Jadwal Audit
-                            Update
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="jadwalAuditDelete()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-calendar-minus fa-3x"></i></div>
-                        </div>
-                        <div class="bg-6 align-items-center text-center text-white menu-item fw-bold fs-2">Jadwal Audit
-                            Delete
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h4 id="auditor" class="page-section-heading text-center text-uppercase text-secondary mb-0">Auditor</h4>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-divide"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <div class="row justify-content-center">
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="periksaListAuditor()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-people-group fa-3x"></i></div>
-                        </div>
-                        <div class="bg-1 align-items-center text-center text-white menu-item fw-bold fs-2">Periksa List
-                            Auditor
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="periksaAuditorAdd()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-person-circle-plus fa-3x"></i></div>
-                        </div>
-                        <div class="bg-2 align-items-center text-center text-white menu-item fw-bold fs-2">Periksa
-                            Auditor Add
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="periksaAuditorDelete()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-person-circle-minus fa-3x"></i></div>
-                        </div>
-                        <div class="bg-3 align-items-center text-center text-white menu-item fw-bold fs-2">Periksa
-                            Auditor Delete
-                        </div>
-                    </div>
-                </div>
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="checkAuditorList()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal1">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-people-roof fa-3x"></i></div>
-                        </div>
-                        <div class="bg-4 align-items-center text-center text-white menu-item fw-bold fs-2">Check
-                            Auditor List
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h4 id="hasilAudit" class="page-section-heading text-center text-uppercase text-secondary mb-0">Hasil Audit
-            </h4>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-divide"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <div class="row justify-content-center">
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="auditResult()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal2">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-file-arrow-up fa-3x"></i></div>
-                        </div>
-                        <div class="bg-5 align-items-center text-center text-white menu-item fw-bold fs-2">Audit Result
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <h4 id="dataRef" class="page-section-heading text-center text-uppercase text-secondary mb-0">Data Referensi
-            </h4>
-            <!-- Icon Divider-->
-            <div class="divider-custom">
-                <div class="divider-custom-line"></div>
-                <div class="divider-custom-icon"><i class="fas fa-divide"></i></div>
-                <div class="divider-custom-line"></div>
-            </div>
-            <div class="row justify-content-center">
-                <!-- Portfolio Item 1-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div onclick="ref()" class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModal2">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fa-solid fa-box-archive fa-3x"></i></div>
-                        </div>
-                        <div class="bg-6 align-items-center text-center text-white menu-item fw-bold fs-2">Data
-                            Referensi/Master
-                        </div>
-                    </div>
+            <div class="col-md-12 mt-5 data-list-table">
+                <div class="table-placeholder">
+                    <p class="text-muted"><em>Data belum ditampilkan</em></p>
                 </div>
             </div>
         </div>
     </section>
     <!-- Copyright Section-->
-    <div class="copyright py-4 text-center text-white">
+    <div class="copyright py-4 text-center text-white login-state">
         <div class="container"><small>Copyright &copy; Balai Besar Tekstil 2022</small></div>
     </div>
-    <!-- Portfolio Modals-->
-    <!-- Portfolio Modal 1-->
+
+    <!-- Login Modal -->
     <div class="portfolio-modal modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal"
         aria-hidden="true">
         <div class="modal-dialog login-modal">
@@ -549,7 +261,7 @@
         </div>
     </div>
     <!-- Portfolio Modal 2-->
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2"
+    <div class="portfolio-modal modal fade" id="dataDetailModal" tabindex="-1" aria-labelledby="dataDetailModal"
         aria-hidden="true">
         <div class="modal-dialog modal-xl">
             <div class="modal-content">
