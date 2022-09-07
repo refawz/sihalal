@@ -118,7 +118,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    border: 2px dashed #ddd;
+    border: 2px dashed #333;
 }
 
 .data-list-table table th:nth-child(1) {
@@ -138,4 +138,17 @@
 }
 .data-list-table table th:nth-child(6) {
     width: 12.5%;
+}
+
+/****** Table Content *******/
+
+.add-biaya-info {
+    list-style-type: none;
+    padding: 0;
+}
+
+.add-biaya-info li b {
+    width: 200px;
+    display: inline-block;
+    line-height: 3rem;
 }

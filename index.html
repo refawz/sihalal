@@ -101,7 +101,7 @@
             </div>
             <div class="col-md-12 mt-5 data-list-table">
                 <div class="table-placeholder">
-                    <p class="text-muted"><em>Data belum ditampilkan</em></p>
+                    <p class="text-muted display-6"><em>Data belum ditampilkan</em></p>
                 </div>
             </div>
         </div>
@@ -280,8 +280,9 @@
                 </div>
             </div>
         </div>
-        <!-- Portfolio Modal 3-->
-        <div class="portfolio-modal modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3"
+    </div>>
+        <!-- updateStatusModal -->
+        <div class="portfolio-modal modal fade" id="updateStatusModal" tabindex="-1" aria-labelledby="updateStatusModal"
             aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
@@ -321,38 +322,36 @@
                 </div>
             </div>
         </div>
-        <!-- Portfolio Modal 4-->
-        <div class="portfolio-modal modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4"
+        <!-- addBiayaModal -->
+        <div class="portfolio-modal modal fade" id="addBiayaModal" tabindex="-1" aria-labelledby="addBiayaModal"
             aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
                             aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
+                    <div class="modal-body pb-5">
                         <div class="container">
                             <div class="row justify-content-center">
-                                <div class="col-lg-8">
+                                <div class="col-lg-10">
                                     <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Controller</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
+                                    <h5 class="text-muted text-uppercase">Tetapkan Biaya</h5>
+                                    <hr class="mb-4 mt-4">
+                                    <ul class="add-biaya-info">
+                                        <li><b>ID Reg</b>: <span data-biaya-info="id_reg"></span></li>
+                                        <li><b>Nama PU</b>: <span data-biaya-info="nama_pu"></span></li>
+                                        <li><b>Nama PU Alt</b>: <span data-biaya-info="nama_pu_alt"></span></li>
+                                        <li><b>Jumlah Produk</b>: <span data-biaya-info="jml_produk"></span></li>
+                                    </ul>
+                                    <div class="mt-5 mb-3">
+                                        <label class="form-label">Biaya Pemeriksaan</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text">Rp</span>
+                                            <input type="number" class="form-control" data-input-id="harga" placeholder="Silakan masukkan biaya pemeriksaan">
+                                        </div>
                                     </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/game.png" alt="..." />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-                                        neque
-                                        assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
-                                        velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque.
-                                        Nam.
-                                    </p>
-                                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                                        <i class="fas fa-xmark fa-fw"></i>
-                                        Close Window
-                                    </button>
+                                    <div class="d-md-flex justify-content-md-end ">
+                                        <button class="btn btn-primary col-md-4" type="button" id="submitAddBiaya">Submit</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -360,39 +359,21 @@
                 </div>
             </div>
         </div>
-        <!-- Portfolio Modal 5-->
-        <div class="portfolio-modal modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5"
+        <!-- confirmationModal-->
+        <div class="portfolio-modal modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModal"
             aria-hidden="true">
-            <div class="modal-dialog modal-xl">
+            <div class="modal-dialog modal-md">
                 <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
-                            aria-label="Close"></button></div>
                     <div class="modal-body text-center pb-5">
                         <div class="container">
                             <div class="row justify-content-center">
                                 <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Locked Safe
-                                    </h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
+                                    <p class="mb-4 fst-italic caption-text"></p>
+
+                                    <div class="d-md-flex justify-content-md-end gap-2">
+                                        <button class="btn btn-light col-md-4" type="button" id="cancelConfirmation">Cancel</button>
+                                        <button class="btn btn-primary col-md-4" type="button" id="submitConfirmation">Submit</button>
                                     </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/safe.png" alt="..." />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-                                        neque
-                                        assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
-                                        velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque.
-                                        Nam.
-                                    </p>
-                                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                                        <i class="fas fa-xmark fa-fw"></i>
-                                        Close Window
-                                    </button>
                                 </div>
                             </div>
                         </div>

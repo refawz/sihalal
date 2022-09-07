@@ -7,6 +7,27 @@
 // Scripts
 //
 
+/**
+ * Global Const
+ */
+
+const idLphBbt = "3B81E330-F97B-48D6-B325-0F5DF175C9EC"
+const statusList = {
+    "10010" :"Dikirim ke LPH",
+    "10020" :"Penetapan Biaya",
+    "10025" :"Pembayaran",
+    "10030" :"Proses di LPH",
+    "10040" :"Selesai Proses di LPH",
+    "10050" :"Diterima Komisi Fatwa",
+    "10060" :"Proses Sidang Fatwa",
+    "10070" :"Selesai Sidang Fatwa",
+    "10080" :"Selesai"
+}
+
+/**
+ * Global const end
+ */
+
 var token = "";
 
 window.addEventListener("DOMContentLoaded", (event) => {
@@ -231,16 +252,18 @@ document
         dataList();
     });
 
+
+
 function dataList() {
     var stat = document.getElementById("statusDataList").value;
-    var idLph = "3B81E330-F97B-48D6-B325-0F5DF175C9EC";
+    var idLph = idLphBbt;
     var url = "http://103.7.14.55/api/v1/data_list/" + stat + "/" + idLph;
     getData(url)
         .then((data) => {
             return data.payload;
         })
         .then((data) => {
-            generateTable(".data-list-table", data);
+            generateTable(".data-list-table", data, stat);
         });
 }
 
@@ -253,12 +276,15 @@ function dataMohon(regId) {
     return response;
 }
 
-function updateStatus() {
-    var stat = "periksa"; //ajuan, biaya, periksa
-    var regId = "79632"; //id registrasi //ambil dari hasil data list
-    var idLph = "3B81E330-F97B-48D6-B325-0F5DF175C9EC";
+function updateStatus(statId, regId) {
+    const stat = {
+        "10010" :"AJUAN",
+        "10025" :"BIAYA",
+        "10030" :"PERIKSA",
+    }
+    var idLph = idLphBbt;
     var url = "http://103.7.14.55/api/v1/data_list/updateStatus";
-    postData(url, { status: stat, reg_id: regId, lph_mapped_id: idLph }).then(
+    postData(url, { status: stat[statId], reg_id: regId, lph_mapped_id: idLph }).then(
         (data) => {
             console.log(data); // JSON data parsed by `data.json()` call
         }
@@ -275,27 +301,22 @@ function biayaList() {
 }
 
 //menambah daftar biaya pemeriksaan
-function biayaAdd() {
-    // var idBiaya = '3000';
-    var idReg = "79632"; //id registrasi //ambil dari hasil data list
+function biayaAdd(data) {
     var keterangan = "Biaya Pemeriksaan";
-    var qty = "1";
-    var harga = "350000";
-    // var total = '350000';
     var url = "http://103.7.14.55/api/v1/costs";
-    postData(url, {
-        id_reg: idReg,
+    var response = postData(url, {
+        id_reg: data.id_reg,
         keterangan: keterangan,
-        qty: qty,
-        harga: harga,
-    }).then((data) => {
-        console.log(data); // JSON data parsed by `data.json()` call
+        qty: data.jml_produk,
+        harga: data.harga,
     });
+
+    return response;
 }
 
 //melihat data konfirmasi pendaftaran
 function konfirmasiList() {
-    var idLph = "3B81E330-F97B-48D6-B325-0F5DF175C9EC";
+    var idLph = idLphBbt;
     var url = "http://103.7.14.55/api/v1/invoice/" + idLph;
     var response = getData(url);
 
@@ -304,7 +325,7 @@ function konfirmasiList() {
 
 //melihat data jadwal audit
 function jadwalAuditList() {
-    // var idLph = '3B81E330-F97B-48D6-B325-0F5DF175C9EC';
+    // var idLph = idLphBbt;
     var url = "http://103.7.14.55/api/v1/audit_schedule/";
     var response = getData(url);
 
@@ -389,7 +410,7 @@ function periksaAuditorDelete() {
 
 //menampilkan list data auditor LPH
 function checkAuditorList() {
-    var idLph = "3B81E330-F97B-48D6-B325-0F5DF175C9EC"; //id lph??
+    var idLph = idLphBbt; //id lph??
     var url = "http://103.7.14.55/api/v1/check_auditor_list/" + idLph;
     var response = getData(url);
 
@@ -431,56 +452,134 @@ function ref() {
     console.log(response);
 }
 
-function generateTable(elTargetClass, dataArr, callback) {
-    const tableHtml = `
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">No</th>
-                <th scope="col">ID Reg</th>
-                <th scope="col">Nama PU</th>
-                <th scope="col">Nama PU Alt</th>
-                <th scope="col"></th>
-                <th scope="col"></th>
-            </tr>
-        </thead>
-        <tbody>
+function generateTable(elTargetClass, dataArr, stat, callback) {
+    console.log(dataArr)
 
-        </tbody>
-    </table>`;
+    const yellowButtonText = {
+        "10010" : "Status",
+        "10020" : "Tetapkan Biaya",
+        "10025" : "Status",
+        "10030" : "Status",
+        "10040" : "",
+        "10050" : "",
+        "10060" : "",
+        "10070" : "",
+        "10080" : ""
+    }
 
-    document.querySelector(elTargetClass).innerHTML = tableHtml;
+    if(Array.isArray(dataArr)){
+        const tableHtml = `
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">ID Reg</th>
+                    <th scope="col">Nama PU</th>
+                    <th scope="col">Nama PU Alt</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
 
-    let html = "";
-    dataArr.forEach((d, index) => {
-        html += `
-    <tr>
-        <th scope="row">${index + 1}</th>
-        <td data-table-name="idreg">${d.id_reg}</td>
-        <td>${d.nama_pu}</td>
-        <td>${d.nama_pu_alt}</td>
-        <td><button type="button" class="btn btn-info btn-sm text-white w-100" data-table-btn="lihat-detail">Lihat Detail</button></td>
-        <td><button type="button" class="btn btn-warning btn-sm w-100" data-table-btn="status">Status</button></td>
-    </tr>`;
-    });
-    document.querySelector(".data-list-table table tbody").innerHTML = html;
+            </tbody>
+        </table>`;
 
-    $('[data-table-btn="lihat-detail"]').on("click", function (ev) {
-        let idReg = $(this)
-            .parent("td")
-            .siblings('[data-table-name="idreg"]')
-            .text();
 
-        let currentData = dataArr.find(function (obj) {
-            return obj.id_reg === +idReg;
+        $(elTargetClass).find('.table-placeholder').addClass('d-none');
+        $(elTargetClass).append(tableHtml);
+
+        let html = "";
+        dataArr.forEach((d, index) => {
+            html += `
+        <tr>
+            <th scope="row">${index + 1}</th>
+            <td data-table-name="idreg">${d.id_reg}</td>
+            <td>${d.nama_pu}</td>
+            <td>${d.nama_pu_alt}</td>
+            <td><button type="button" class="btn btn-info btn-sm text-white w-100" data-table-btn="lihat-detail">Lihat Detail</button></td>
+            ${yellowButtonText[stat] ? '<td><button type="button" class="btn btn-warning btn-sm w-100" data-table-btn="action">'+yellowButtonText[stat]+'</button></td>' : ''}
+        </tr>`;
+        });
+        document.querySelector(".data-list-table table tbody").innerHTML = html;
+
+        function getObjFromArr(el) {
+            let idReg = $(el)
+                .parent("td")
+                .siblings('[data-table-name="idreg"]')
+                .text();
+
+            let currentData = dataArr.find(function (obj) {
+                return obj.id_reg === +idReg;
+            });
+
+            return currentData;
+        }
+
+        $('[data-table-btn="lihat-detail"]').on("click", function (ev) {
+            let currentData = getObjFromArr($(this))
+
+            lihatDetailData(currentData);
         });
 
-        lihatDetailData(currentData);
-    });
+        const actionBtnHandler = {
+            "10010" : function (currentData) {
+                updateStatusAction(currentData, stat);
+            },
+            "10020" : function (currentData) {
+                addBiayaModal(currentData, stat);
+            },
+            "10025" : function (currentData) {
+                updateStatusAction(currentData, stat);
+            },
+            "10030" : function (currentData) {
+                updateStatusAction(currentData, stat);
+            },
+            "10040" : "",
+            "10050" : "",
+            "10060" : "",
+            "10070" : "",
+            "10080" : ""
+        }
 
-    if (callback) {
-        callback();
+        $('[data-table-btn="action"]').on("click", function (ev) {
+            let currentData = getObjFromArr($(this))
+
+            actionBtnHandler[stat](currentData);
+        });
+
+        if (callback) {
+            callback();
+        }
+    } else {
+        $(elTargetClass+' table').remove()
+        $(elTargetClass+' .table-placeholder').removeClass('d-none').find('em').text('Data tidak tersedia')
     }
+}
+
+function updateStatusAction(data, stat) {
+    $("#updateStatusModal").modal("show");
+}
+
+function addBiayaModal(data) {
+    const _parentEl = $("#addBiayaModal")
+    let dataToSend = {}
+    _parentEl.modal("show");
+
+    document.querySelectorAll("#addBiayaModal *[data-biaya-info]").forEach(function (el) {
+        if(data.hasOwnProperty(el.dataset.biayaInfo)){
+            $(el).text(data[el.dataset.biayaInfo]);
+            dataToSend[el.dataset.biayaInfo] = data[el.dataset.biayaInfo]
+        }
+    })
+
+    _parentEl.find("#submitAddBiaya").on("click", function (ev) {
+        const captionText = `Apakah anda yakin untuk menetapkan biaya untuk ID Reg <b>${data.id_reg}</b>`;
+        dataToSend.harga = _parentEl.find('[data-input-id="harga"]').val()
+        showConfirmationModal(captionText, function () {
+            biayaAdd(dataToSend).then(data => console.log(data.payload))
+        })
+    })
 }
 
 function lihatDetailData(data) {
@@ -575,3 +674,20 @@ $("#dataDetailModal").on('hide.bs.modal', function () {
     document.querySelector('.dataDetailContext').innerHTML = '';
     document.querySelector('.dataDetailModalTitle').innerHTML = '';
 });
+
+function showConfirmationModal(text, submitCallback) {
+    const _parentEl = $("#confirmationModal")
+    _parentEl.modal("show").find('.caption-text').html(text);
+
+    _parentEl.find('#cancelConfirmation').on("click", function (ev) {
+        _parentEl.modal('hide')
+    });
+
+    _parentEl.find('#submitConfirmation').on("click", function (ev) {
+        if(submitCallback) {
+            submitCallback();
+        }
+
+        $('.modal').modal('hide');
+    });
+}
