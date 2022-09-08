@@ -1,89 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <meta name="description" content="" />
     <meta name="author" content="" />
     <title>SIHALAL</title>
     <!-- Favicon-->
     <link rel="icon" type="image/x-icon" href="assets/favicon-halal.png" />
     <!-- Font Awesome icons (free version)-->
-    <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
+    <script
+      src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"
+      crossorigin="anonymous"
+    ></script>
     <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
-        type="text/css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,700"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
     <link href="css/custom.css" rel="stylesheet" />
     <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" -->
     <!-- integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-</head>
+  </head>
 
-<body id="page-top">
+  <body id="page-top">
     <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand nav-head" href="#page-top">SIHALAL</a>
-            <button class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded" type="button"
-                data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive"
-                aria-expanded="false" aria-label="Toggle navigation">
-                Menu
-                <i class="fas fa-bars"></i>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item mx-0 mx-lg-1 nav-section d-none"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#dataPermohonan">Data Permohonan</a></li>
-                    <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+    <nav
+      class="navbar navbar-expand-lg bg-secondary text-uppercase fixed-top"
+      id="mainNav"
+    >
+      <div class="container">
+        <a class="navbar-brand nav-head" href="#page-top">SIHALAL</a>
+        <button
+          class="navbar-toggler text-uppercase font-weight-bold bg-primary text-white rounded"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarResponsive"
+          aria-controls="navbarResponsive"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item mx-0 mx-lg-1 nav-section d-none">
+                <a
+                  class="nav-link py-3 px-0 px-lg-3 rounded"
+                  href="#"
+                  >Data List</a
+                >
+              </li>
+            <li class="nav-item mx-0 mx-lg-1 nav-section d-none">
+              <a
+                class="nav-link py-3 px-0 px-lg-3 rounded"
+                href="#"
+                >Invoice</a
+              >
+            </li>
+            <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#biaya">Biaya</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#invoice">Invoice</a></li> -->
-                    <li class="nav-item mx-0 mx-lg-1 nav-section d-none"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#jadwalAudit">Audit</a></li>
-                    <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
+            <li class="nav-item mx-0 mx-lg-1 nav-section d-none">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#"
+                >Audit</a
+              >
+            </li>
+            <!-- <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#auditor">Auditor</a></li>
                     <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded"
                             href="#hasilAudit">Hasil Audit</a></li> -->
-                    <li class="nav-item mx-0 mx-lg-1 nav-section d-none"><a class="nav-link py-3 px-0 px-lg-3 rounded"
-                            href="#dataRef">Ref</a></li>
-                    <li class="nav-item" data-id="login-btn"><a class="nav-link py-2 px-0 px-lg-3 rounded login-btn"
-                            href="#dataRef" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a></li>
-                    <li class="nav-item d-none" data-id="logout-btn"><a
-                            class="nav-link py-2 px-0 px-lg-3 rounded login-btn">Logout</a>
-                    </li>
-                </ul>
-            </div>
+            <li class="nav-item mx-0 mx-lg-1 nav-section d-none">
+              <a class="nav-link py-3 px-0 px-lg-3 rounded" href="#"
+                >Ref</a
+              >
+            </li>
+            <li class="nav-item" data-id="login-btn">
+              <a
+                class="nav-link py-2 px-0 px-lg-3 rounded login-btn"
+                href="#dataRef"
+                data-bs-toggle="modal"
+                data-bs-target="#loginModal"
+                >Login</a
+              >
+            </li>
+            <li class="nav-item d-none" data-id="logout-btn">
+              <a class="nav-link py-2 px-0 px-lg-3 rounded login-btn">Logout</a>
+            </li>
+          </ul>
         </div>
+      </div>
     </nav>
     <!-- Masthead-->
     <header class="masthead bg-primary text-white text-center">
-        <div class="container d-flex align-items-center flex-column">
-            <div class="masthead__wrap">
-                <div class="masthead__image">
-                    <img src="assets/img/halal-white-logo.png" alt="..." />
-                </div>
-                <div class="masthead__heading-wrap">
-                    <h1 class="masthead__heading">Sistem Informasi Halal</h1>
-                    <p class="masthead__subheading masthead-subheading font-weight-light mb-0">Balai Besar Standardisasi
-                        dan Pelayanan Jasa Tekstil</p>
-                </div>
-            </div>
+      <div class="container d-flex align-items-center flex-column">
+        <div class="masthead__wrap">
+          <div class="masthead__image">
+            <img src="assets/img/halal-white-logo.png" alt="..." />
+          </div>
+          <div class="masthead__heading-wrap">
+            <h1 class="masthead__heading">Sistem Informasi Halal</h1>
+            <p
+              class="masthead__subheading masthead-subheading font-weight-light mb-0"
+            >
+              Balai Besar Standardisasi dan Pelayanan Jasa Tekstil
+            </p>
+          </div>
         </div>
+      </div>
     </header>
     <!-- Portfolio Section-->
     <section class="page-section portfolio d-none" id="menuAPI">
-        <div class="container">
+      <div class="container">
+        <p><em>Silakan pilih Status Permohonan</em></p>
+        <div class="row align-items-end">
+          <div class="col-md-9">
+            <!-- <label for="statusDataList" class="form-label">Status</label> -->
+            <select
+              class="form-select form-select"
+              aria-label=".form-select example"
+              id="statusDataList"
+            >
+              <option selected disabled>Pilih Status Permohonan</option>
+              <option value="10010">Dikirim ke LPH</option>
+              <option value="10020">Penetapan Biaya</option>
+              <option value="10025">Pembayaran</option>
+              <option value="10030">Proses di LPH</option>
+              <option value="10040">Selesai Proses di LPH</option>
+              <option value="10050">Diterima Komisi Fatwa</option>
+              <option value="10060">Proses Sidang Fatwa</option>
+              <option value="10070">Selesai Sidang Fatwa</option>
+              <option value="10080">Selesai</option>
+            </select>
+          </div>
+          <div class="col-md-3">
+            <button
+              id="btnDataList"
+              type="submit"
+              class="btn btn-primary w-100"
+            >
+              Ambil Data
+            </button>
+          </div>
+        </div>
+        <div class="col-md-12 mt-5 data-list-table">
+          <div class="table-placeholder">
+            <p class="text-muted display-6"><em>Data belum ditampilkan</em></p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Copyright Section-->
+    <div class="copyright py-4 text-center text-white login-state">
+      <div class="container">
+        <small>Copyright &copy; Balai Besar Tekstil 2022</small>
+      </div>
+    </div>
 
-            <p><em>Silakan pilih Status Permohonan</em></p>
-            <div class="row align-items-end">
-                <div class="col-md-9">
-                    <!-- <label for="statusDataList" class="form-label">Status</label> -->
-                    <select class="form-select form-select" aria-label=".form-select example" id="statusDataList">
-                        <option selected disabled>Pilih Status Permohonan</option>
+    <!-- Login Modal -->
+    <div
+      class="portfolio-modal modal fade"
+      id="loginModal"
+      tabindex="-1"
+      aria-labelledby="loginModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog login-modal">
+        <div class="modal-content">
+          <div class="modal-body pb-5 pt-4">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-lg-9">
+                  <button
+                    id="btnCloseLogin"
+                    class="btn-close"
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                  <div class="fs-2 mb-2">Login</div>
+                  <div class="border border-1 mb-3"></div>
+                  <div id="loginAlert" role="alert"></div>
+                  <form id="loginForm">
+                    <div class="mb-3">
+                      <label for="inputEmail" class="form-label">Email</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="inputEmail"
+                        aria-describedby="emailHelp"
+                      />
+                    </div>
+                    <div class="mb-4">
+                      <label for="inputPassword" class="form-label"
+                        >Password</label
+                      >
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="inputPassword"
+                      />
+                    </div>
+                    <button
+                      id="btnLogin"
+                      type="submit"
+                      class="btn btn-primary w-100"
+                    >
+                      Login
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--Data List Modal-->
+    <div
+      class="portfolio-modal modal fade"
+      id="dataListModal"
+      tabindex="-1"
+      aria-labelledby="dataListModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog login-modal">
+        <div class="modal-content">
+          <div class="modal-body pb-5 pt-4">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-lg-9">
+                  <button
+                    id="btnCloseDataList"
+                    class="btn-close"
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                  <div class="fs-2 mb-2">Data List</div>
+                  <form id="formDataList">
+                    <div class="mb-3">
+                      <label for="statusDataList" class="form-label"
+                        >Status</label
+                      >
+                      <select
+                        class="form-select form-select"
+                        aria-label=".form-select example"
+                        id="statusDataList"
+                      >
+                        <option selected disabled>
+                          Pilih Status Permohonan
+                        </option>
                         <option value="10010">Dikirim ke LPH</option>
                         <option value="10020">Penetapan Biaya</option>
                         <option value="10025">Pembayaran</option>
@@ -93,113 +273,56 @@
                         <option value="10060">Proses Sidang Fatwa</option>
                         <option value="10070">Selesai Sidang Fatwa</option>
                         <option value="10080">Selesai</option>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <button id="btnDataList" type="submit" class="btn btn-primary w-100">Ambil Data</button>
-                </div>
-            </div>
-            <div class="col-md-12 mt-5 data-list-table">
-                <div class="table-placeholder">
-                    <p class="text-muted display-6"><em>Data belum ditampilkan</em></p>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Copyright Section-->
-    <div class="copyright py-4 text-center text-white login-state">
-        <div class="container"><small>Copyright &copy; Balai Besar Tekstil 2022</small></div>
-    </div>
-
-    <!-- Login Modal -->
-    <div class="portfolio-modal modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal"
-        aria-hidden="true">
-        <div class="modal-dialog login-modal">
-            <div class="modal-content">
-                <div class="modal-body pb-5 pt-4">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-9">
-                                <button id="btnCloseLogin" class="btn-close" type="button" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                                <div class="fs-2 mb-2">Login</div>
-                                <div class="border border-1 mb-3"></div>
-                                <div id="loginAlert" role="alert"></div>
-                                <form id="loginForm">
-                                    <div class="mb-3">
-                                        <label for="inputEmail" class="form-label">Email</label>
-                                        <input type="email" class="form-control" id="inputEmail"
-                                            aria-describedby="emailHelp">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="inputPassword" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="inputPassword">
-                                    </div>
-                                    <button id="btnLogin" type="submit" class="btn btn-primary w-100">Login</button>
-                                </form>
-                            </div>
-                        </div>
+                      </select>
                     </div>
+                    <button
+                      id="btnDataList"
+                      type="submit"
+                      class="btn btn-primary w-100"
+                    >
+                      Submit
+                    </button>
+                  </form>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-    <!--Data List Modal-->
-    <div class="portfolio-modal modal fade" id="dataListModal" tabindex="-1" aria-labelledby="dataListModal"
-        aria-hidden="true">
-        <div class="modal-dialog login-modal">
-            <div class="modal-content">
-                <div class="modal-body pb-5 pt-4">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-9">
-                                <button id="btnCloseDataList" class="btn-close" type="button" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                                <div class="fs-2 mb-2">Data List</div>
-                                <form id="formDataList">
-                                    <div class="mb-3">
-                                        <label for="statusDataList" class="form-label">Status</label>
-                                        <select class="form-select form-select" aria-label=".form-select example"
-                                            id="statusDataList">
-                                            <option selected disabled>Pilih Status Permohonan</option>
-                                            <option value="10010">Dikirim ke LPH</option>
-                                            <option value="10020">Penetapan Biaya</option>
-                                            <option value="10025">Pembayaran</option>
-                                            <option value="10030">Proses di LPH</option>
-                                            <option value="10040">Selesai Proses di LPH</option>
-                                            <option value="10050">Diterima Komisi Fatwa</option>
-                                            <option value="10060">Proses Sidang Fatwa</option>
-                                            <option value="10070">Selesai Sidang Fatwa</option>
-                                            <option value="10080">Selesai</option>
-                                        </select>
-                                    </div>
-                                    <button id="btnDataList" type="submit" class="btn btn-primary w-100">Submit</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="portfolio-modal modal fade" id="updateStatusModal" tabindex="-1" aria-labelledby="updateStatusModal"
-        aria-hidden="true">
-        <div class="modal-dialog login-modal">
-            <div class="modal-content">
-                <div class="modal-body pb-5 pt-4">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-9">
-                                <button id="btnCloseUpdateStatus" class="btn-close" type="button"
-                                    data-bs-dismiss="modal" aria-label="Close"></button>
-                                <div class="fs-2 mb-2">Update Status Permohonan</div>
-                                <form id="formUpdateStatus">
-                                    <div class="mb-3">
-                                        <label for="selectIdRegUpdateStatus" class="form-label">Pemohon</label>
-                                        <select class="form-select form-select" aria-label=".form-select example"
-                                            id="selectIdRegUpdateStatus">
-                                            <option selected disabled>Pilih Pemohon</option>
-                                            <!-- <option selected>Status Permohonan</option>
+    <div
+      class="portfolio-modal modal fade"
+      id="updateStatusModal"
+      tabindex="-1"
+      aria-labelledby="updateStatusModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog login-modal">
+        <div class="modal-content">
+          <div class="modal-body pb-5 pt-4">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-lg-9">
+                  <button
+                    id="btnCloseUpdateStatus"
+                    class="btn-close"
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                  <div class="fs-2 mb-2">Update Status Permohonan</div>
+                  <form id="formUpdateStatus">
+                    <div class="mb-3">
+                      <label for="selectIdRegUpdateStatus" class="form-label"
+                        >Pemohon</label
+                      >
+                      <select
+                        class="form-select form-select"
+                        aria-label=".form-select example"
+                        id="selectIdRegUpdateStatus"
+                      >
+                        <option selected disabled>Pilih Pemohon</option>
+                        <!-- <option selected>Status Permohonan</option>
                                             <option value="10010">Dikirim ke LPH</option>
                                             <option value="10020">Penetapan Biaya</option>
                                             <option value="10025">Pembayaran</option>
@@ -209,227 +332,364 @@
                                             <option value="10060">Proses Sidang Fatwa</option>
                                             <option value="10070">Selesai Sidang Fatwa</option>
                                             <option value="10080">Selesai</option> -->
-                                        </select>
-                                        <label for="selectStatusUpdateStatus" class="form-label">Pilih Status</label>
-                                        <select class="form-select form-select" aria-label=".form-select example"
-                                            id="selectStatusUpdateStatus">
-                                            <option selected disabled>Pilih Status Permohonan</option>
-                                            <option value="ajuan">Penetapan Biaya</option>
-                                            <option value="biaya">Proses di LPH</option>
-                                            <option value="periksa">Selesai Proses di LPH</option>
-                                        </select>
-                                    </div>
-                                    <button id="btnUpdateStatus" type="submit"
-                                        class="btn btn-primary w-100">Submit</button>
-                                </form>
-                            </div>
-                        </div>
+                      </select>
+                      <label for="selectStatusUpdateStatus" class="form-label"
+                        >Pilih Status</label
+                      >
+                      <select
+                        class="form-select form-select"
+                        aria-label=".form-select example"
+                        id="selectStatusUpdateStatus"
+                      >
+                        <option selected disabled>
+                          Pilih Status Permohonan
+                        </option>
+                        <option value="ajuan">Penetapan Biaya</option>
+                        <option value="biaya">Proses di LPH</option>
+                        <option value="periksa">Selesai Proses di LPH</option>
+                      </select>
                     </div>
+                    <button
+                      id="btnUpdateStatus"
+                      type="submit"
+                      class="btn btn-primary w-100"
+                    >
+                      Submit
+                    </button>
+                  </form>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Audit Result Modal 2-->
-    <div class="portfolio-modal modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2"
-        aria-hidden="true">
-        <div class="modal-dialog login-modal">
-            <div class="modal-content">
-                <div class="modal-body pb-5 pt-4">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-9">
-                                <button class="btn-close" type="button" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                                <div class="fs-2 mb-2">Hasil Audit</div>
-                                <div class="border border-1 mb-3"></div>
-                                <form>
-                                    <div class="mb-3">
-                                        <label for="auditResultFile" class="form-label">File</label>
-                                        <input type="file" class="form-control" id="auditResultFile">
-                                    </div>
-                                    <div class="mb-4">
-                                        <label for="exampleInputPassword1" class="form-label">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1">
-                                    </div>
-                                    <button type="submit" class="btn btn-primary w-100">Submit</button>
-                                </form>
-                            </div>
-                        </div>
+    <div
+      class="portfolio-modal modal fade"
+      id="portfolioModal2"
+      tabindex="-1"
+      aria-labelledby="portfolioModal2"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog login-modal">
+        <div class="modal-content">
+          <div class="modal-body pb-5 pt-4">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-lg-9">
+                  <button
+                    class="btn-close"
+                    type="button"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                  <div class="fs-2 mb-2">Hasil Audit</div>
+                  <div class="border border-1 mb-3"></div>
+                  <form>
+                    <div class="mb-3">
+                      <label for="auditResultFile" class="form-label"
+                        >File</label
+                      >
+                      <input
+                        type="file"
+                        class="form-control"
+                        id="auditResultFile"
+                      />
                     </div>
+                    <div class="mb-4">
+                      <label for="exampleInputPassword1" class="form-label"
+                        >Password</label
+                      >
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="exampleInputPassword1"
+                      />
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">
+                      Submit
+                    </button>
+                  </form>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
     <!-- Portfolio Modal 2-->
-    <div class="portfolio-modal modal fade" id="dataDetailModal" tabindex="-1" aria-labelledby="dataDetailModal"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
-                        aria-label="Close"></button></div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-9 text-start">
-                                <div class="fs-4 mb-2 dataDetailModalTitle"></div>
-                                <div class="border border-1 mb-3"></div>
-                                <div class="fs-4 mb-2 dataDetailContext"></div>
-                            </div>
-                        </div>
-                    </div>
+    <div
+      class="portfolio-modal modal fade"
+      id="dataDetailModal"
+      tabindex="-1"
+      aria-labelledby="dataDetailModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <button
+              class="btn-close"
+              type="button"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-center pb-5">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-lg-9 text-start">
+                  <div class="fs-4 mb-2 dataDetailModalTitle"></div>
+                  <div class="border border-1 mb-3"></div>
+                  <div class="fs-4 mb-2 dataDetailContext"></div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>>
-        <!-- updateStatusModal -->
-        <div class="portfolio-modal modal fade" id="updateStatusModal" tabindex="-1" aria-labelledby="updateStatusModal"
-            aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
-                            aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Circus Tent
-                                    </h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/circus.png"
-                                        alt="..." />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-                                        neque
-                                        assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
-                                        velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque.
-                                        Nam.
-                                    </p>
-                                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                                        <i class="fas fa-xmark fa-fw"></i>
-                                        Close Window
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+      </div>
+    </div>
+    >
+    <!-- updateStatusModal -->
+    <div
+      class="portfolio-modal modal fade"
+      id="updateStatusModal"
+      tabindex="-1"
+      aria-labelledby="updateStatusModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <button
+              class="btn-close"
+              type="button"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body text-center pb-5">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-lg-8"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- addBiayaModal -->
+    <div
+      class="portfolio-modal modal fade"
+      id="addBiayaModal"
+      tabindex="-1"
+      aria-labelledby="addBiayaModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <button
+              class="btn-close"
+              type="button"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body pb-5">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-lg-10">
+                  <!-- Portfolio Modal - Title-->
+                  <h5 class="text-muted text-uppercase">Tetapkan Biaya</h5>
+                  <hr class="mb-4 mt-4" />
+                  <ul class="add-biaya-info">
+                    <li>
+                      <b>ID Reg</b>: <span data-biaya-info="id_reg"></span>
+                    </li>
+                    <li>
+                      <b>Nama PU</b>: <span data-biaya-info="nama_pu"></span>
+                    </li>
+                    <li>
+                      <b>Nama PU Alt</b>:
+                      <span data-biaya-info="nama_pu_alt"></span>
+                    </li>
+                    <li>
+                      <b>Jumlah Produk</b>:
+                      <span data-biaya-info="jml_produk"></span>
+                    </li>
+                  </ul>
+                  <div class="mt-5 mb-3">
+                    <label class="form-label"
+                      >Biaya Pemeriksaan Per Produk</label
+                    >
+                    <div class="input-group">
+                      <span class="input-group-text">Rp</span>
+                      <input
+                        type="number"
+                        class="form-control"
+                        data-input-id="harga"
+                        placeholder="Silakan masukkan biaya pemeriksaan per produk"
+                      />
                     </div>
+                  </div>
+                  <div class="d-md-flex justify-content-md-end">
+                    <button
+                      class="btn btn-primary col-md-4"
+                      type="button"
+                      id="submitAddBiaya"
+                    >
+                      Submit
+                    </button>
+                  </div>
                 </div>
+              </div>
             </div>
+          </div>
         </div>
-        <!-- addBiayaModal -->
-        <div class="portfolio-modal modal fade" id="addBiayaModal" tabindex="-1" aria-labelledby="addBiayaModal"
-            aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
-                            aria-label="Close"></button></div>
-                    <div class="modal-body pb-5">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-10">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h5 class="text-muted text-uppercase">Tetapkan Biaya</h5>
-                                    <hr class="mb-4 mt-4">
-                                    <ul class="add-biaya-info">
-                                        <li><b>ID Reg</b>: <span data-biaya-info="id_reg"></span></li>
-                                        <li><b>Nama PU</b>: <span data-biaya-info="nama_pu"></span></li>
-                                        <li><b>Nama PU Alt</b>: <span data-biaya-info="nama_pu_alt"></span></li>
-                                        <li><b>Jumlah Produk</b>: <span data-biaya-info="jml_produk"></span></li>
-                                    </ul>
-                                    <div class="mt-5 mb-3">
-                                        <label class="form-label">Biaya Pemeriksaan</label>
-                                        <div class="input-group">
-                                            <span class="input-group-text">Rp</span>
-                                            <input type="number" class="form-control" data-input-id="harga" placeholder="Silakan masukkan biaya pemeriksaan">
-                                        </div>
-                                    </div>
-                                    <div class="d-md-flex justify-content-md-end ">
-                                        <button class="btn btn-primary col-md-4" type="button" id="submitAddBiaya">Submit</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- confirmationModal-->
-        <div class="portfolio-modal modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModal"
-            aria-hidden="true">
-            <div class="modal-dialog modal-md">
-                <div class="modal-content">
-                    <div class="modal-body text-center pb-5">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <p class="mb-4 fst-italic caption-text"></p>
+      </div>
+    </div>
 
-                                    <div class="d-md-flex justify-content-md-end gap-2">
-                                        <button class="btn btn-light col-md-4" type="button" id="cancelConfirmation">Cancel</button>
-                                        <button class="btn btn-primary col-md-4" type="button" id="submitConfirmation">Submit</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Portfolio Modal 6-->
-        <div class="portfolio-modal modal fade" id="portfolioModal6" tabindex="-1" aria-labelledby="portfolioModal6"
-            aria-hidden="true">
-            <div class="modal-dialog modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header border-0"><button class="btn-close" type="button" data-bs-dismiss="modal"
-                            aria-label="Close"></button></div>
-                    <div class="modal-body text-center pb-5">
-                        <div class="container">
-                            <div class="row justify-content-center">
-                                <div class="col-lg-8">
-                                    <!-- Portfolio Modal - Title-->
-                                    <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Submarine</h2>
-                                    <!-- Icon Divider-->
-                                    <div class="divider-custom">
-                                        <div class="divider-custom-line"></div>
-                                        <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
-                                        <div class="divider-custom-line"></div>
-                                    </div>
-                                    <!-- Portfolio Modal - Image-->
-                                    <img class="img-fluid rounded mb-5" src="assets/img/portfolio/submarine.png"
-                                        alt="..." />
-                                    <!-- Portfolio Modal - Text-->
-                                    <p class="mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-                                        neque
-                                        assumenda ipsam nihil, molestias magnam, recusandae quos quis inventore quisquam
-                                        velit asperiores, vitae? Reprehenderit soluta, eos quod consequuntur itaque.
-                                        Nam.
-                                    </p>
-                                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                                        <i class="fas fa-xmark fa-fw"></i>
-                                        Close Window
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
-</body>
+    <!-- addJadwalAudit -->
+    <div
+      class="portfolio-modal modal fade"
+      id="addJadwalAuditModal"
+      tabindex="-1"
+      aria-labelledby="addJadwalAuditModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+          <div class="modal-header border-0">
+            <button
+              class="btn-close"
+              type="button"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body pb-5">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-lg-10">
+                  <h5 class="text-muted text-uppercase">Tetapkan Jadwal Audit</h5>
+                  <hr class="mb-4 mt-4" />
+                  <div class="mt-5 mb-2">
+                    <label class="form-label">Pilih Auditor</label>
+                    <select name="" data-input-group="add-auditor" data-input-id="auditor_id">
 
+                    </select>
+                  </div>
+                  <div class=" mb-2">
+                    <label class="form-label">Jadwal Awal</label>
+                    <input type="date" data-input-group="jadwal-audit" data-input-id="jadwal_awal">
+                  </div>
+                  <div class=" mb-2">
+                    <label class="form-label">Jadwal Akhir</label>
+                    <input type="date" data-input-group="jadwal-audit" data-input-id="jadwal_akhir">
+                  </div>
+                  <div class=" mb-2">
+                    <label class="form-label">Jumlah Hari</label>
+                    <input type="text" data-input-group="jadwal-audit" data-input-id="jml_hari" disabled>
+                  </div>
+                  <div class="d-md-flex justify-content-md-end">
+                    <button
+                      class="btn btn-primary col-md-4"
+                      type="button"
+                      id="submitAddJadwal"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- confirmationModal-->
+    <div
+      class="portfolio-modal modal fade"
+      id="confirmationModal"
+      tabindex="-1"
+      aria-labelledby="confirmationModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-body text-center pb-5">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-lg-8">
+                  <p class="mb-4 fst-italic caption-text"></p>
+
+                  <div class="d-md-flex justify-content-md-end gap-2">
+                    <button
+                      class="btn btn-light col-md-4"
+                      type="button"
+                      id="cancelConfirmation"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      class="btn btn-primary col-md-4"
+                      type="button"
+                      id="submitConfirmation"
+                    >
+                      Submit
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- successModal-->
+    <div
+      class="portfolio-modal modal fade"
+      id="successModal"
+      tabindex="-1"
+      aria-labelledby="successModal"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <div class="modal-body text-center pb-5">
+            <div class="container">
+              <div class="row justify-content-center">
+                <div class="col-lg-8">
+                  <p class="mb-4 fst-italic caption-text"></p>
+
+                  <div class="d-md-flex justify-content-md-end">
+                    <button
+                      class="btn btn-primary col-md-4"
+                      type="button"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  </body>
 </html>

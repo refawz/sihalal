@@ -333,18 +333,13 @@ function jadwalAuditList() {
 }
 
 //menambah data jadwal audit
-function jadwalAuditAdd() {
-    var idReg = "79632"; //id registrasi //ambil dari hasil data list
-    var jadwalAwal = "2022-08-20";
-    var jadwalAkhir = "2022-08-23";
-    var jmlHari = "4";
+function jadwalAuditAdd(data) {
+    // var idReg = "79632"; //id registrasi //ambil dari hasil data list
+    // var jadwalAwal = "2022-08-20";
+    // var jadwalAkhir = "2022-08-23";
+    // var jmlHari = "4";
     var url = "http://103.7.14.55/api/v1/audit_schedule";
-    postData(url, {
-        id_reg: idReg,
-        jadwal_awal: jadwalAwal,
-        jadwal_akhir: jadwalAkhir,
-        jml_hari: jmlHari,
-    }).then((data) => {
+    postData(url, {data}).then((data) => {
         console.log(data); // JSON data parsed by `data.json()` call
     });
 }
@@ -377,23 +372,26 @@ function jadwalAuditDelete() {
 }
 
 //menampilkan list data seluruh auditor
-function periksaListAuditor() {
+function getAuditorList() {
     var url = "http://103.7.14.55/api/v1/reg_auditor";
     var response = getData(url);
 
-    console.log(response);
+    return response;
 }
 
 //menambahkan auditor
-function periksaAuditorAdd() {
-    var idReg = "79632"; //id registrasi //ambil dari hasil data list
-    var auditorId = "F0D51FC3-8D7D-418F-9CC9-213606753069";
-    var createBy = "BBSPJIT";
+function addAuditor(data) {
+    // var idReg = "79632"; //id registrasi //ambil dari hasil data list
+    // var auditorId = "F0D51FC3-8D7D-418F-9CC9-213606753069";
+    // var createBy = "BBSPJIT";
+
+    Object.assign(data, {create_by: "BBSPJIT"})
     var url = "http://103.7.14.55/api/v1/reg_auditor";
     postData(url, {
-        id_reg: idReg,
-        auditor_id: auditorId,
-        create_by: createBy,
+        // id_reg: idReg,
+        // auditor_id: auditorId,
+        // create_by: createBy,
+        data
     }).then((data) => {
         console.log(data); // JSON data parsed by `data.json()` call
     });
@@ -409,12 +407,12 @@ function periksaAuditorDelete() {
 }
 
 //menampilkan list data auditor LPH
-function checkAuditorList() {
-    var idLph = idLphBbt; //id lph??
-    var url = "http://103.7.14.55/api/v1/check_auditor_list/" + idLph;
+function getAuditorListByLph() {
+    const idLphForGetAudit = "B06E9064-7958-47EA-AC12-A3F40480B70D"
+    var url = "http://103.7.14.55/api/v1/check_auditor_list/" + idLphForGetAudit;
     var response = getData(url);
 
-    console.log(response);
+    return response;
 }
 
 //menambahkan auditor
@@ -530,7 +528,7 @@ function generateTable(elTargetClass, dataArr, stat, callback) {
                 addBiayaModal(currentData, stat);
             },
             "10025" : function (currentData) {
-                updateStatusAction(currentData, stat);
+                addJadwalAuditModal(currentData, stat);
             },
             "10030" : function (currentData) {
                 updateStatusAction(currentData, stat);
@@ -577,7 +575,14 @@ function addBiayaModal(data) {
         const captionText = `Apakah anda yakin untuk menetapkan biaya untuk ID Reg <b>${data.id_reg}</b>`;
         dataToSend.harga = _parentEl.find('[data-input-id="harga"]').val()
         showConfirmationModal(captionText, function () {
-            biayaAdd(dataToSend).then(data => console.log(data.payload))
+            biayaAdd(dataToSend).then(res => {
+                $('.modal').modal('hide');
+
+                showSuccessModal(`
+                    <p class="mb-3 fst-italic">Biaya berhasil ditetapkan untuk ID Reg ${res.id_reg}.</p>
+                    <b>Total biaya adalah Rp. ${res.total}</b>
+                `)
+            })
         })
     })
 }
@@ -687,7 +692,80 @@ function showConfirmationModal(text, submitCallback) {
         if(submitCallback) {
             submitCallback();
         }
-
-        $('.modal').modal('hide');
     });
 }
+
+function showSuccessModal(text) {
+    const _parentEl = $("#successModal")
+    _parentEl.modal("show").find('.caption-text').html(text);
+}
+
+function addJadwalAuditModal(data, stat) {
+    var obj = {
+        id_reg: idReg,
+        jadwal_awal: jadwalAwal,
+        jadwal_akhir: jadwalAkhir,
+        jml_hari: jmlHari
+    }
+    const _parentEl = $("#addJadwalAuditModal")
+    let dataToSendJadwalAudit = {
+        reg_id : data.reg_id
+    }
+    let dataToSendAddAuditor = {
+        reg_id: data.reg_id
+    }
+
+    getAuditorListByLph().then(data => {
+        if(Array.isArray(data.payload) && data.payload.length > 0) {
+            let htmlAdd = ''
+            data.payload.forEach((i) => {
+                htmlAdd += `<option value="${i.auditor_id}">${i.nama}</option>`
+            })
+            
+            _parentEl.find('[data-input-id="auditor_id"]').html(htmlAdd);
+        }
+    })
+
+    _parentEl.modal("show");
+
+    const _jadwalAwalEl = _parentEl.find('[data-input-id="jadwal_awal"]')
+    const _JadwalAkhirEl = _parentEl.find('[data-input-id="jadwal_akhir"]')
+    const _jumlahHariEl = _parentEl.find('[data-input-id="jml_hari"]')
+    const days = (date_1, date_2) =>{
+        let difference = date_1.getTime() - date_2.getTime();
+        let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
+        return TotalDays;
+    }
+
+    _jadwalAwalEl.add(_JadwalAkhirEl).on("input change", function (ev) {
+        if(_jadwalAwalEl.val() && _JadwalAkhirEl.val()){
+            _jumlahHariEl.val(days(_jadwalAwalEl.val(), _JadwalAkhirEl.val()))
+        }
+    })
+
+    $('#addJadwalAuditModal *[data-input-group="jadwal-audit"]').on('input change', function (el) {
+        if($(el).attr('type') == 'date'){
+            dataToSendJadwalAudit[$(el).data('input-id')] = (new Date($(el).val())).getTime()
+        } else {
+            dataToSendJadwalAudit[$(el).data('input-id')] = $(el).val()
+        }
+    })
+
+    $('#addJadwalAuditModal *[data-input-group="add-auditor"]').on('input change', function (el) {
+        dataToSendAddAuditor[$(el).data('input-id')] = $(el).val()
+    })
+
+    _parentEl.find("#submitAddJadwal").on("click", function (ev) {
+        const captionText = `Apakah anda yakin untuk menetapkan jadwal audit untuk ID Reg <b>${data.id_reg}</b> dan update status`;
+        showConfirmationModal(captionText, function () {
+            Promise.all([updateStatus(stat, data.reg_id), jadwalAuditAdd(dataToSendJadwalAudit), addAuditor(dataToSendAddAuditor)]).then(res => {
+                $('.modal').modal('hide');
+
+                showSuccessModal(`
+                    <p class="mb-3 fst-italic">Jadwal audit dan update status berhasil ditetapkan.</p>
+                `)
+            })
+        })
+    })
+}
+
