@@ -13,15 +13,15 @@
 
 const idLphBbt = "3B81E330-F97B-48D6-B325-0F5DF175C9EC"
 const statusList = {
-    "10010" :"Dikirim ke LPH",
-    "10020" :"Penetapan Biaya",
-    "10025" :"Pembayaran",
-    "10030" :"Proses di LPH",
-    "10040" :"Selesai Proses di LPH",
-    "10050" :"Diterima Komisi Fatwa",
-    "10060" :"Proses Sidang Fatwa",
-    "10070" :"Selesai Sidang Fatwa",
-    "10080" :"Selesai"
+    "10010": "Dikirim ke LPH",
+    "10020": "Penetapan Biaya",
+    "10025": "Pembayaran",
+    "10030": "Proses di LPH",
+    "10040": "Selesai Proses di LPH",
+    "10050": "Diterima Komisi Fatwa",
+    "10060": "Proses Sidang Fatwa",
+    "10070": "Selesai Sidang Fatwa",
+    "10080": "Selesai"
 }
 
 /**
@@ -264,6 +264,15 @@ function dataList() {
         })
         .then((data) => {
             generateTable(".data-list-table", data, stat);
+            if (stat == '10020') {
+                $('.btnBiayaList').html(
+                    `<button class="btn btn-primary mt-2" onclick="biayaList()">Lihat Biaya yang Terdaftar</button>`
+                );
+                // console.log('cek');
+            }
+            else {
+                $('.btnBiayaList').html('');
+            }
         });
 }
 
@@ -278,9 +287,9 @@ function dataMohon(regId) {
 
 function updateStatus(statId, regId) {
     const stat = {
-        "10010" :"AJUAN",
-        "10025" :"BIAYA",
-        "10030" :"PERIKSA",
+        "10010": "AJUAN",
+        "10025": "BIAYA",
+        "10030": "PERIKSA",
     }
     var idLph = idLphBbt;
     var url = "http://103.7.14.55/api/v1/data_list/updateStatus";
@@ -296,8 +305,24 @@ function biayaList() {
     // var regId = '79629'; //id registrasi
     var url = "http://103.7.14.55/api/v1/costs";
     var response = getData(url);
+    document.querySelector('.dataBiayaListContext').innerHTML = '';
+    $('#dataBiayaListModal').modal('show');
+    response.then((data) => {
+        let list = data.payload;
+        let i = 0;
+        // console.log(list);
+        list.forEach(function (datas) {
+            i++;
+            document.querySelector('.dataBiayaListContext').innerHTML += `<b>${i}.<b><br>`;
+            for (const data in datas) {
+                document.querySelector('.dataBiayaListContext').innerHTML += `${data} : ${datas[data]}<br>`;
+                // console.log(data);
+            }
+            document.querySelector('.dataBiayaListContext').innerHTML += `<br>`;
+        });
+    });
 
-    console.log(response);
+    // console.log(response);
 }
 
 //menambah daftar biaya pemeriksaan
@@ -339,7 +364,7 @@ function jadwalAuditAdd(data) {
     // var jadwalAkhir = "2022-08-23";
     // var jmlHari = "4";
     var url = "http://103.7.14.55/api/v1/audit_schedule";
-    postData(url, {data}).then((data) => {
+    postData(url, { data }).then((data) => {
         console.log(data); // JSON data parsed by `data.json()` call
     });
 }
@@ -385,7 +410,7 @@ function addAuditor(data) {
     // var auditorId = "F0D51FC3-8D7D-418F-9CC9-213606753069";
     // var createBy = "BBSPJIT";
 
-    Object.assign(data, {create_by: "BBSPJIT"})
+    Object.assign(data, { create_by: "BBSPJIT" })
     var url = "http://103.7.14.55/api/v1/reg_auditor";
     postData(url, {
         // id_reg: idReg,
@@ -454,18 +479,18 @@ function generateTable(elTargetClass, dataArr, stat, callback) {
     console.log(dataArr)
 
     const yellowButtonText = {
-        "10010" : "Status",
-        "10020" : "Tetapkan Biaya",
-        "10025" : "Status",
-        "10030" : "Status",
-        "10040" : "",
-        "10050" : "",
-        "10060" : "",
-        "10070" : "",
-        "10080" : ""
+        "10010": "Status",
+        "10020": "Tetapkan Biaya",
+        "10025": "Status",
+        "10030": "Status",
+        "10040": "",
+        "10050": "",
+        "10060": "",
+        "10070": "",
+        "10080": ""
     }
 
-    if(Array.isArray(dataArr)){
+    if (Array.isArray(dataArr)) {
         const tableHtml = `
         <table class="table">
             <thead>
@@ -496,7 +521,7 @@ function generateTable(elTargetClass, dataArr, stat, callback) {
             <td>${d.nama_pu}</td>
             <td>${d.nama_pu_alt}</td>
             <td><button type="button" class="btn btn-info btn-sm text-white w-100" data-table-btn="lihat-detail">Lihat Detail</button></td>
-            ${yellowButtonText[stat] ? '<td><button type="button" class="btn btn-warning btn-sm w-100" data-table-btn="action">'+yellowButtonText[stat]+'</button></td>' : ''}
+            ${yellowButtonText[stat] ? '<td><button type="button" class="btn btn-warning btn-sm w-100" data-table-btn="action">' + yellowButtonText[stat] + '</button></td>' : ''}
         </tr>`;
         });
         document.querySelector(".data-list-table table tbody").innerHTML = html;
@@ -521,23 +546,23 @@ function generateTable(elTargetClass, dataArr, stat, callback) {
         });
 
         const actionBtnHandler = {
-            "10010" : function (currentData) {
+            "10010": function (currentData) {
                 updateStatusAction(currentData, stat);
             },
-            "10020" : function (currentData) {
+            "10020": function (currentData) {
                 addBiayaModal(currentData, stat);
             },
-            "10025" : function (currentData) {
+            "10025": function (currentData) {
                 addJadwalAuditModal(currentData, stat);
             },
-            "10030" : function (currentData) {
+            "10030": function (currentData) {
                 updateStatusAction(currentData, stat);
             },
-            "10040" : "",
-            "10050" : "",
-            "10060" : "",
-            "10070" : "",
-            "10080" : ""
+            "10040": "",
+            "10050": "",
+            "10060": "",
+            "10070": "",
+            "10080": ""
         }
 
         $('[data-table-btn="action"]').on("click", function (ev) {
@@ -550,8 +575,8 @@ function generateTable(elTargetClass, dataArr, stat, callback) {
             callback();
         }
     } else {
-        $(elTargetClass+' table').remove()
-        $(elTargetClass+' .table-placeholder').removeClass('d-none').find('em').text('Data tidak tersedia')
+        $(elTargetClass + ' table').remove()
+        $(elTargetClass + ' .table-placeholder').removeClass('d-none').find('em').text('Data tidak tersedia')
     }
 }
 
@@ -565,7 +590,7 @@ function addBiayaModal(data) {
     _parentEl.modal("show");
 
     document.querySelectorAll("#addBiayaModal *[data-biaya-info]").forEach(function (el) {
-        if(data.hasOwnProperty(el.dataset.biayaInfo)){
+        if (data.hasOwnProperty(el.dataset.biayaInfo)) {
             $(el).text(data[el.dataset.biayaInfo]);
             dataToSend[el.dataset.biayaInfo] = data[el.dataset.biayaInfo]
         }
@@ -689,7 +714,7 @@ function showConfirmationModal(text, submitCallback) {
     });
 
     _parentEl.find('#submitConfirmation').on("click", function (ev) {
-        if(submitCallback) {
+        if (submitCallback) {
             submitCallback();
         }
     });
@@ -709,19 +734,19 @@ function addJadwalAuditModal(data, stat) {
     }
     const _parentEl = $("#addJadwalAuditModal")
     let dataToSendJadwalAudit = {
-        reg_id : data.reg_id
+        reg_id: data.reg_id
     }
     let dataToSendAddAuditor = {
         reg_id: data.reg_id
     }
 
     getAuditorListByLph().then(data => {
-        if(Array.isArray(data.payload) && data.payload.length > 0) {
+        if (Array.isArray(data.payload) && data.payload.length > 0) {
             let htmlAdd = ''
             data.payload.forEach((i) => {
                 htmlAdd += `<option value="${i.auditor_id}">${i.nama}</option>`
             })
-            
+
             _parentEl.find('[data-input-id="auditor_id"]').html(htmlAdd);
         }
     })
@@ -731,20 +756,20 @@ function addJadwalAuditModal(data, stat) {
     const _jadwalAwalEl = _parentEl.find('[data-input-id="jadwal_awal"]')
     const _JadwalAkhirEl = _parentEl.find('[data-input-id="jadwal_akhir"]')
     const _jumlahHariEl = _parentEl.find('[data-input-id="jml_hari"]')
-    const days = (date_1, date_2) =>{
+    const days = (date_1, date_2) => {
         let difference = date_1.getTime() - date_2.getTime();
         let TotalDays = Math.ceil(difference / (1000 * 3600 * 24));
         return TotalDays;
     }
 
     _jadwalAwalEl.add(_JadwalAkhirEl).on("input change", function (ev) {
-        if(_jadwalAwalEl.val() && _JadwalAkhirEl.val()){
+        if (_jadwalAwalEl.val() && _JadwalAkhirEl.val()) {
             _jumlahHariEl.val(days(_jadwalAwalEl.val(), _JadwalAkhirEl.val()))
         }
     })
 
     $('#addJadwalAuditModal *[data-input-group="jadwal-audit"]').on('input change', function (el) {
-        if($(el).attr('type') == 'date'){
+        if ($(el).attr('type') == 'date') {
             dataToSendJadwalAudit[$(el).data('input-id')] = (new Date($(el).val())).getTime()
         } else {
             dataToSendJadwalAudit[$(el).data('input-id')] = $(el).val()
