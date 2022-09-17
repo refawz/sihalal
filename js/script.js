@@ -82,62 +82,50 @@ window.addEventListener("DOMContentLoaded", (event) => {
     // })
 });
 
-function getExternalData(endpoint, args) {
-    var xhr = new XMLHttpRequest();
-    var response;
-
-    xhr.addEventListener("load", function () {
+// Example GET method implementation:
+function getData(url = "", args) {
+    const xhr = new XMLHttpRequest();
+    let response;
+    xhr.open('GET', url);
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.withCredentials = true;
+    xhr.send();
+    xhr.addEventListener('load', function () {
         if (xhr.readyState === 4 && xhr.status === 200) {
             response = JSON.parse(xhr.responseText);
             // console.log('Response: ', response);
-
-            args.onSuccess(response);
+            if (response.status == 'success') {
+                args.onSuccess(response);
+            } else {
+                args.onError(response);
+            }
         }
     });
-    xhr.addEventListener("error", function () {
-        args.onXHRError(xhr);
-    });
-
-    xhr.open("GET", endpoint);
-    xhr.send(null);
 }
 
-// Example GET method implementation:
-async function getData(url = "") {
-    // Default options are marked with *
-
-    const response = await fetch(url, {
-        method: "GET", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        // cookie: '__bpjph_ct=' + token,
-        credentials: "include", // include, *same-origin, omit
-        headers: {
-            "Content-Type": "application/json",
-            // 'Authorization': 'Basic ' + token,
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: "follow", // manual, *follow, error
-        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        // body: JSON.stringify(data) // body data type must match "Content-Type" header
+// Example POST method implementation:
+function postData(url = "", data = {}, args) {
+    const xhr = new XMLHttpRequest();
+    let response;
+    xhr.open('POST', url);
+    // xhr.setRequestHeader('X-PINGOTHER', 'pingpong');
+    xhr.setRequestHeader('Content-Type', 'application/json');
+    xhr.withCredentials = true;
+    xhr.send(JSON.stringify(data));
+    xhr.addEventListener('load', function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            response = JSON.parse(xhr.responseText);
+            if (response.status == 'success') {
+                args.onSuccess(response);
+            } else {
+                args.onError(response);
+            }
+        }
     });
-    // .then(res => {
-    //     return res.json();
-    // })
-    // .then(data => {
-    //     console.log(data);
-    //     return data;
-    // });
-    // .then(res => res.json())
-    // .then(res => {
-    //     const data = res.Search;
-    //     data.forEach(d => resGet += d);
-    // });
-    return response.json(); // parses JSON response into native JavaScript objects
 }
 
 // Example DELETE method implementation:
-async function deleteData(url = "") {
+async function deleteData(url = "",) {
     // Default options are marked with *
     const response = await fetch(url, {
         method: "DELETE", // *GET, POST, PUT, DELETE, etc.
@@ -153,25 +141,6 @@ async function deleteData(url = "") {
         redirect: "follow", // manual, *follow, error
         referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
         // body: JSON.stringify(data) // body data type must match "Content-Type" header
-    });
-    return response.json(); // parses JSON response into native JavaScript objects
-}
-
-// Example POST method implementation:
-async function postData(url = "", data = {}) {
-    // Default options are marked with *
-    const response = await fetch(url, {
-        method: "POST", // *GET, POST, PUT, DELETE, etc.
-        mode: "cors", // no-cors, *cors, same-origin
-        cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
-        credentials: "include", // include, *same-origin, omit
-        headers: {
-            "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        redirect: "follow", // manual, *follow, error
-        referrerPolicy: "no-referrer", // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
-        body: JSON.stringify(data), // body data type must match "Content-Type" header
     });
     return response.json(); // parses JSON response into native JavaScript objects
 }
@@ -206,30 +175,36 @@ function login() {
     var password = document.getElementById("inputPassword").value;
     var element = document.getElementById("loginAlert");
     // element.style.display = "none";
-    postData("http://103.7.14.55/auth/signin", {
-        userid: email,
-        password: password,
-    }).then((data) => {
-        element.classList.add("alert");
-        if (data.status == "success") {
-            element.classList.add("alert-primary");
-            element.classList.remove("alert-danger");
-            document.getElementById("loginForm").reset();
+    postData(
+        "http://103.7.14.55/auth/signin",
+        {
+            userid: email,
+            password: password,
+        },
+        {
+            onSuccess: function (res) {
+                // console.log(res);
+                element.classList.add("alert-primary");
+                element.classList.remove("alert-danger");
+                document.getElementById("loginForm").reset();
 
-            $('.nav-item[data-id="login-btn"]').addClass("d-none");
-            $('.nav-item[data-id="logout-btn"]').removeClass("d-none");
-            $("#loginModal").modal("toggle");
-            $("#menuAPI").removeClass("d-none");
-            $(".masthead").addClass("d-none");
-            $(".copyright").addClass("d-none");
-            $(".nav-section").removeClass("d-none");
-        } else {
-            element.classList.add("alert-danger");
-            element.classList.remove("alert-primary");
-            document.getElementById("inputPassword").value = "";
+                $('.nav-item[data-id="login-btn"]').addClass("d-none");
+                $('.nav-item[data-id="logout-btn"]').removeClass("d-none");
+                $("#loginModal").modal("toggle");
+                $("#menuAPI").removeClass("d-none");
+                $(".masthead").addClass("d-none");
+                $(".copyright").addClass("d-none");
+                $(".nav-section").removeClass("d-none");
+                element.innerHTML = res.message;
+            },
+            onError: function (res) {
+                element.classList.add("alert-danger");
+                element.classList.remove("alert-primary");
+                document.getElementById("inputPassword").value = "";
+                element.innerHTML = res.message;
+            }
         }
-        element.innerHTML = data.message;
-    });
+    );
 }
 // document.getElementById("btnCloseLogin").addEventListener("click", function (event) {
 //     document.getElementById('loginAlert').style.display = "block";
@@ -237,9 +212,7 @@ function login() {
 
 //Logout
 function logout() {
-    postData("http://103.7.14.55/auth/logout", {}).then((data) => {
-        console.log(data);
-    });
+    postData("http://103.7.14.55/auth/logout", {});
 }
 
 //Data List
@@ -257,22 +230,37 @@ function dataList() {
     var stat = document.getElementById("statusDataList").value;
     var idLph = idLphBbt;
     var url = "http://103.7.14.55/api/v1/data_list/" + stat + "/" + idLph;
-    getData(url)
-        .then((data) => {
-            return data.payload;
-        })
-        .then((data) => {
-            generateTable(".data-list-table", data, stat);
-            if (stat == '10020') {
-                $('.btnBiayaList').html(
-                    `<button class="btn btn-primary mt-2" onclick="biayaList()">Lihat Biaya yang Terdaftar</button>`
-                );
-                // console.log('cek');
-            }
-            else {
-                $('.btnBiayaList').html('');
+    getData(
+        url,
+        {
+            onSuccess: function (response) {
+                generateTable(".data-list-table", response.payload, stat);
+                if (stat == '10020') {
+                    $('.btnBiayaList').html(
+                        `<button class="btn btn-primary mt-2" onclick="biayaList()">Lihat Biaya yang Terdaftar</button>`
+                    );
+                    // console.log('cek');
+                }
+                else {
+                    $('.btnBiayaList').html('');
+                }
             }
         });
+    // .then((data) => {
+    //     return data.payload;
+    // })
+    // .then((data) => {
+    //     generateTable(".data-list-table", data, stat);
+    //     if (stat == '10020') {
+    //         $('.btnBiayaList').html(
+    //             `<button class="btn btn-primary mt-2" onclick="biayaList()">Lihat Biaya yang Terdaftar</button>`
+    //         );
+    //         // console.log('cek');
+    //     }
+    //     else {
+    //         $('.btnBiayaList').html('');
+    //     }
+    // });
 }
 
 //detail data permohonan
@@ -491,21 +479,21 @@ function generateTable(elTargetClass, dataArr, stat, callback) {
 
     if (Array.isArray(dataArr)) {
         const tableHtml = `
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">No</th>
-                    <th scope="col">ID Reg</th>
-                    <th scope="col">Nama PU</th>
-                    <th scope="col">Nama PU Alt</th>
-                    <th scope="col"></th>
-                    <th scope="col"></th>
-                </tr>
-            </thead>
-            <tbody>
-
-            </tbody>
-        </table>`;
+         <table class="table">
+             <thead>
+                 <tr>
+                     <th scope="col">No</th>
+                     <th scope="col">ID Reg</th>
+                     <th scope="col">Nama PU</th>
+                     <th scope="col">Nama PU Alt</th>
+                     <th scope="col"></th>
+                     <th scope="col"></th>
+                 </tr>
+             </thead>
+             <tbody>
+ 
+             </tbody>
+         </table>`;
 
 
         $(elTargetClass).find('.table-placeholder').addClass('d-none');
@@ -514,14 +502,14 @@ function generateTable(elTargetClass, dataArr, stat, callback) {
         let html = "";
         dataArr.forEach((d, index) => {
             html += `
-        <tr>
-            <th scope="row">${index + 1}</th>
-            <td data-table-name="idreg">${d.id_reg}</td>
-            <td>${d.nama_pu}</td>
-            <td>${d.nama_pu_alt}</td>
-            <td><button type="button" class="btn btn-info btn-sm text-white w-100" data-table-btn="lihat-detail">Lihat Detail</button></td>
-            ${yellowButtonText[stat] ? '<td><button type="button" class="btn btn-warning btn-sm w-100" data-table-btn="action">' + yellowButtonText[stat] + '</button></td>' : ''}
-        </tr>`;
+         <tr>
+             <th scope="row">${index + 1}</th>
+             <td data-table-name="idreg">${d.id_reg}</td>
+             <td>${d.nama_pu}</td>
+             <td>${d.nama_pu_alt}</td>
+             <td><button type="button" class="btn btn-info btn-sm text-white w-100" data-table-btn="lihat-detail">Lihat Detail</button></td>
+             ${yellowButtonText[stat] ? '<td><button type="button" class="btn btn-warning btn-sm w-100" data-table-btn="action">' + yellowButtonText[stat] + '</button></td>' : ''}
+         </tr>`;
         });
         document.querySelector(".data-list-table table tbody").innerHTML = html;
 
@@ -603,9 +591,9 @@ function addBiayaModal(data) {
                 $('.modal').modal('hide');
 
                 showSuccessModal(`
-                    <p class="mb-3 fst-italic">Biaya berhasil ditetapkan untuk ID Reg ${res.id_reg}.</p>
-                    <b>Total biaya adalah Rp. ${res.total}</b>
-                `)
+                     <p class="mb-3 fst-italic">Biaya berhasil ditetapkan untuk ID Reg ${res.id_reg}.</p>
+                     <b>Total biaya adalah Rp. ${res.total}</b>
+                 `)
             })
         })
     })
@@ -786,8 +774,8 @@ function addJadwalAuditModal(data, stat) {
                 $('.modal').modal('hide');
 
                 showSuccessModal(`
-                    <p class="mb-3 fst-italic">Jadwal audit dan update status berhasil ditetapkan.</p>
-                `)
+                     <p class="mb-3 fst-italic">Jadwal audit dan update status berhasil ditetapkan.</p>
+                 `)
             })
         })
     })
